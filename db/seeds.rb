@@ -442,6 +442,7 @@ bispevika = {
   { name: "Akserselva canal", geojson: akserselva_canal },
   { name: "Bispevika", geojson: bispevika },
 ].each do |location_data|
+  location_data.fetch(:geojson).fetch(:properties)[:name] = location_data.fetch(:name)
   location = Location.find_or_initialize_by(name: location_data.fetch(:name))
   location.update!(location_data)
 end

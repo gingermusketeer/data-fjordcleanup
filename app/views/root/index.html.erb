@@ -53,5 +53,9 @@
   // });
 
   const features = <%== JSON.generate(@features) %>;
-  L.geoJSON(features).addTo(map);
+  L.geoJSON(features, {
+    onEachFeature: function(f, l) {
+      l.bindPopup('<pre>' + JSON.stringify(f.properties, null, ' ').replace(/[\{\}"]/g, '') + '</pre>');
+    }
+  }).addTo(map);
 </script>
