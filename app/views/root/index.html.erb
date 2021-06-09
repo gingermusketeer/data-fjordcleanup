@@ -1,7 +1,6 @@
 <div id="map" style="width: 100%; height: 100%"></div>
 
 <script type="module">
-  console.log("here")
   import L from "https://cdn.skypack.dev/leaflet";
   // import "https://cdn.skypack.dev/@geoman-io/leaflet-geoman-free";
 
@@ -52,10 +51,26 @@
   //   );
   // });
 
-  const features = <%== JSON.generate(@features) %>;
+  const features = JSON.parse('<%== JSON.generate(@features) %>');
   L.geoJSON(features, {
     onEachFeature: function(f, l) {
-      l.bindPopup('<pre>' + JSON.stringify(f.properties, null, ' ').replace(/[\{\}"]/g, '') + '</pre>');
+      l.bindPopup("Loading...")
+
+
+      function onMapClick(e) {
+        var popup = e.target.getPopup()
+        const {
+          id
+        } = f.properties
+        fetch(`/locations/${id}/popup`)
+          .then((data) => data.text())
+          .then((html) => {
+            popup.setContent(html)
+          });
+
+      }
+
+      l.on("click", onMapClick)
     }
   }).addTo(map);
 </script>
