@@ -446,6 +446,5 @@ bispevika = {
   location.geojson = {}
   location.save!
 
-  location_data.fetch(:geojson).fetch(:properties)[:id] = location.id
   location.update!(location_data)
 end

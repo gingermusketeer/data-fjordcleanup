@@ -1,0 +1,62 @@
+<%= form_with(model: @location) do |f| %>
+<%= f.label :name %>
+<%= f.text_field :name %>
+<%= f.hidden_field :geojson %>
+<%= f.submit  %>
+<% end %>
+
+<div id="map" style="width: 50%; height: 50%"></div>
+
+<script type="module">
+  import L from "https://cdn.skypack.dev/leaflet";
+  import "https://cdn.skypack.dev/@geoman-io/leaflet-geoman-free";
+
+  const CENTER = {
+    lat: 59.90325104612689,
+    lng: 10.729951858520508,
+  };
+
+  var map = L.map("map", {
+    minZoom: 0,
+    maxZoom: 18
+  }).setView(
+    [CENTER.lat, CENTER.lng],
+    15
+  );
+  window.map = map;
+
+  var topolayer = new L.TileLayer.WMS(
+    "https://opencache.statkart.no/gatekeeper/gk/gk.open", {
+      layers: "norges_grunnkart",
+      format: "image/png",
+      transparent: false,
+      version: "1.0",
+      attribution: "Kartverket",
+    }
+  ).addTo(map);
+
+  var southWest = new L.LatLng(63.28735, 10.58363),
+    northEast = new L.LatLng(63.63414, 11.78317),
+    bounds = new L.LatLngBounds(southWest, northEast);
+
+  map.pm.addControls({
+    position: "topleft",
+    drawCircle: false,
+  });
+
+  map.on("pm:drawend", (shape) => {
+    const layers = [];
+    map.eachLayer((layer) => {
+      layers.push(layer);
+    });
+    const result =
+      JSON.stringify(
+        layers.filter(({
+          pm
+        }) => pm).map((layer) => layer.toGeoJSON())[0]
+      )
+    console.log(result)
+    window.location_geojson.value = result
+
+  });
+</script>
