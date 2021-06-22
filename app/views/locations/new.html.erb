@@ -1,6 +1,8 @@
 <%= form_with(model: @location) do |f| %>
 <%= f.label :name %>
 <%= f.text_field :name %>
+<%= f.label :kind %>
+<%= f.select :kind, options_for_select(Location.kinds.keys, f.object.kind) %>
 <%= f.hidden_field :geojson %>
 <%= f.submit  %>
 <% end %>

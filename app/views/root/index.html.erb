@@ -2,7 +2,6 @@
 
 <script type="module">
   import L from "https://cdn.skypack.dev/leaflet";
-  // import "https://cdn.skypack.dev/@geoman-io/leaflet-geoman-free";
 
   const CENTER = {
     lat: 59.90325104612689,
@@ -32,40 +31,30 @@
     northEast = new L.LatLng(63.63414, 11.78317),
     bounds = new L.LatLngBounds(southWest, northEast);
 
-  // map.pm.addControls({
-  //   position: "topleft",
-  //   drawCircle: false,
-  // });
-
-  // map.on("pm:drawend", (shape) => {
-  //   const layers = [];
-  //   map.eachLayer((layer) => {
-  //     layers.push(layer);
-  //   });
-  //   console.log(
-  //     JSON.stringify(
-  //       layers.filter(({
-  //         pm
-  //       }) => pm).map((layer) => layer.toGeoJSON())
-  //     )
-  //   );
-  // });
-
   const features = JSON.parse('<%== JSON.generate(@features) %>');
   L.geoJSON(features, {
     onEachFeature: function(f, l) {
-      l.bindPopup("Loading...")
-
+      let loading = false
 
       function onMapClick(e) {
-        var popup = e.target.getPopup()
+        if (loading) {
+          return
+        }
+        loading = true
+        l.bindPopup("Loading...").openPopup()
         const {
           id
         } = f.properties
         fetch(`/locations/${id}/popup`)
           .then((data) => data.text())
           .then((html) => {
-            popup.setContent(html)
+            l.bindPopup(html).openPopup()
+          })
+          .catch((e) => {
+            console.error(e)
+          })
+          .then(() => {
+            loading = false
           });
 
       }

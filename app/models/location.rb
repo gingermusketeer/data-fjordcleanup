@@ -1,7 +1,13 @@
 class Location < ApplicationRecord
-  after_commit do |location|
+  after_commit on: [:create, :update] do |location|
     geojson = location.geojson.deep_dup
     geojson.fetch("properties")["id"] = location.id
     location.update_columns(geojson: geojson)
   end
+
+  enum kind: {
+    area: "area",
+    event: "event",
+    lobster_house: "lobster_house",
+  }
 end
