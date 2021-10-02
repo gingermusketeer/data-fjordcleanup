@@ -2,7 +2,7 @@ class Cleanup < ApplicationRecord
   belongs_to :hosted_at, class_name: "Location"
   has_and_belongs_to_many :locations
 
-  validates :occurred_at, :weight, :locations, presence: true
+  validates :occurred_on, :weight, :locations, presence: true
   validate :hosted_at_is_event
 
   def hosted_at_is_event

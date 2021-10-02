@@ -2,7 +2,7 @@ class CreateCleanups < ActiveRecord::Migration[6.1]
   def change
     create_table :cleanups do |t|
       t.belongs_to :hosted_at, foreign_key: { to_table: :locations }, null: false
-      t.datetime :occurred_at, null: false
+      t.date :occurred_on, null: false
       t.integer :weight, null: false
 
       t.timestamps

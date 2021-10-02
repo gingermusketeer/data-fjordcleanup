@@ -1,0 +1,25 @@
+<%= form_with(model: cleanup, class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mx-auto max-w-sm") do |f| %>
+  <h1 class="text-2xl font-bold mb-4">Record Cleanup</h1>
+  <% f.object.errors.full_messages.each do |msg| %>
+    <span class="flex items-center font-medium tracking-wide text-red-500 text-sm">
+      <%= msg %>
+    </span>
+  <% end %>
+  <div class="mb-4 flex flex-col">
+    <%= f.label :occurred_on %>
+    <%= f.date_field :occurred_on %>
+  </div>
+  <div class="mb-4 flex flex-col">
+    <%= f.label :weight %>
+    <%= f.number_field :weight %>
+  </div>
+  <div class="mb-4 flex flex-col">
+    <%= f.label :hosted_at_id, "Hosted at" %>
+    <%= f.select :hosted_at_id, options_for_select(@event_location_data, f.object.hosted_at_id) %>
+  </div>
+  <div class="mb-4 flex flex-col">
+    <%= f.label :location_ids, "Locations" %>
+    <%= f.select :location_ids, options_for_select(@area_location_data, f.object.location_ids), {}, multiple: true %>
+  </div>
+  <%= f.submit class: "h-12 px-6 m-2 text-lg text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800" %>
+<% end %>

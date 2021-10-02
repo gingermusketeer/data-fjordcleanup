@@ -1,20 +1,25 @@
-<h1 class="h1">Cleanups</h1>
-<%= link_to 'Register Cleanup', new_cleanup_url %>
-<table>
-  <thead>
-    <td>Date</td>
-    <td>Locations</td>
-    <td>Weight of trash</td>
-    <td></td>
-  </thead>
-  <tbody>
-    <% @cleanups.each do |cleanup| %>
-      <tr>
-        <td><%= cleanup.occurred_at %></td>
-        <td><%= cleanup.locations.map(&:name).join(", ") %></td>
-        <td><%= cleanup.weight %></td>
-        <td><%= link_to edit_cleanup_url(cleanup) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mx-auto max-w-m">
+  <h1 class="text-2xl font-bold mb-4">Cleanups
+    <%= link_to 'Register Cleanup', new_cleanup_url, class: "h-6 px-3 py-1 m-1 text-xs text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800" %>
+  </h1>
+  <table class="text-left w-full border-collapse">
+    <thead>
+      <td class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Date</td>
+      <td class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Locations</td>
+      <td class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Weight of trash (kg)</td>
+      <td class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light"></td>
+    </thead>
+    <tbody>
+      <% @cleanups.each do |cleanup| %>
+        <tr class="hover:bg-grey-lighter">
+          <td class="py-4 px-6 border-b border-grey-light"><%= time_tag cleanup.occurred_on %></td>
+          <td class="py-4 px-6 border-b border-grey-light"><%= cleanup.locations.map(&:name).join(", ") %></td>
+          <td class="py-4 px-6 border-b border-grey-light"><%= cleanup.weight %></td>
+          <td class="py-4 px-6 border-b border-grey-light">
+            <%= link_to "Edit", edit_cleanup_url(cleanup), class: "text-grey-lighter font-bold py-1 px-3 rounded text-xs bg-green hover:bg-green-dark" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

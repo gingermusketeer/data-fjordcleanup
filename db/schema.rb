@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2021_06_28_213352) do
 
   create_table "cleanups", force: :cascade do |t|
     t.bigint "hosted_at_id", null: false
-    t.datetime "occurred_at", null: false
+    t.date "occurred_on", null: false
     t.integer "weight", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
