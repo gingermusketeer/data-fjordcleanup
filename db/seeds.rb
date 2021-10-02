@@ -437,10 +437,10 @@ bispevika = {
   { name: "Tjuvholmen", geojson: tjuvholmen },
   { name: "Skur13", geojson: skur13 },
   { name: "Dokka", geojson: dokka },
-  { name: "Goat raft", geojson: goat_raft },
-  { name: "Goat beach", geojson: goat_beach },
-  { name: "Akserselva canal", geojson: akserselva_canal },
-  { name: "Bispevika", geojson: bispevika },
+# { name: "Goat raft", geojson: goat_raft },
+# { name: "Goat beach", geojson: goat_beach },
+# { name: "Akserselva canal", geojson: akserselva_canal },
+# { name: "Bispevika", geojson: bispevika },
 ].each do |location_data|
   location = Location.find_or_initialize_by(name: location_data.fetch(:name))
   location.geojson = location_data.fetch(:geojson).stringify_keys
@@ -449,7 +449,7 @@ bispevika = {
 end
 
 [
-  { "name" => "Bjørvika", "geojson" => { "type" => "Feature", "geometry" => { "type" => "Point", "coordinates" => [10.753107, 59.904719] }, "properties" => {} }, "kind" => "event" },
+  # { "name" => "Bjørvika", "geojson" => { "type" => "Feature", "geometry" => { "type" => "Point", "coordinates" => [10.753107, 59.904719] }, "properties" => {} }, "kind" => "event" },
   { "name" => "Goat Shack", "geojson" => { "type" => "Feature", "geometry" => { "type" => "Point", "coordinates" => [10.726403, 59.907269] }, "properties" => {} }, "kind" => "event" },
 ].each do |location_data|
   location = Location.find_or_initialize_by(name: location_data.fetch("name"))
@@ -457,22 +457,22 @@ end
   location.save!
 end
 
-Location.lobster_house.destroy_all
-[
-  { "geojson" => { "type" => "Feature", "geometry" => { "type" => "Point", "coordinates" => [10.723392, 59.909871] }, "properties" => {} }, "kind" => "lobster_house" },
-  { "geojson" => { "type" => "Feature", "geometry" => { "type" => "Point", "coordinates" => [10.723414, 59.909694] }, "properties" => {} }, "kind" => "lobster_house" },
-  { "geojson" => { "type" => "Feature", "geometry" => { "type" => "Point", "coordinates" => [10.723483, 59.909522] }, "properties" => {} }, "kind" => "lobster_house" },
-  { "geojson" => { "type" => "Feature", "geometry" => { "type" => "Point", "coordinates" => [10.723553, 59.909361] }, "properties" => {} }, "kind" => "lobster_house" },
-  { "geojson" => { "type" => "Feature", "geometry" => { "type" => "Point", "coordinates" => [10.723591, 59.909258] }, "properties" => {} }, "kind" => "lobster_house" },
-  { "geojson" => { "type" => "Feature", "geometry" => { "type" => "Point", "coordinates" => [10.72365, 59.909072] }, "properties" => {} }, "kind" => "lobster_house" },
-  { "geojson" => { "type" => "Feature", "geometry" => { "type" => "Point", "coordinates" => [10.752844, 59.904649] }, "properties" => {} }, "kind" => "lobster_house" },
-  { "geojson" => { "type" => "Feature", "geometry" => { "type" => "Point", "coordinates" => [10.752849, 59.904585] }, "properties" => {} }, "kind" => "lobster_house" },
-  { "geojson" => { "type" => "Feature", "geometry" => { "type" => "Point", "coordinates" => [10.752758, 59.904547] }, "properties" => {} }, "kind" => "lobster_house" },
-  { "geojson" => { "type" => "Feature", "geometry" => { "type" => "Point", "coordinates" => [10.75286, 59.904526] }, "properties" => {} }, "kind" => "lobster_house" },
-  { "geojson" => { "type" => "Feature", "geometry" => { "type" => "Point", "coordinates" => [10.75293, 59.904493] }, "properties" => {} }, "kind" => "lobster_house" },
-  { "geojson" => { "type" => "Feature", "geometry" => { "type" => "Point", "coordinates" => [10.753096, 59.904482] }, "properties" => {} }, "kind" => "lobster_house" },
-].each do |location_data|
-  location = Location.new(location_data)
-  location.name = "Lobster house"
-  location.save!
-end
+# Location.lobster_house.destroy_all
+# [
+#   { "geojson" => { "type" => "Feature", "geometry" => { "type" => "Point", "coordinates" => [10.723392, 59.909871] }, "properties" => {} }, "kind" => "lobster_house" },
+#   { "geojson" => { "type" => "Feature", "geometry" => { "type" => "Point", "coordinates" => [10.723414, 59.909694] }, "properties" => {} }, "kind" => "lobster_house" },
+#   { "geojson" => { "type" => "Feature", "geometry" => { "type" => "Point", "coordinates" => [10.723483, 59.909522] }, "properties" => {} }, "kind" => "lobster_house" },
+#   { "geojson" => { "type" => "Feature", "geometry" => { "type" => "Point", "coordinates" => [10.723553, 59.909361] }, "properties" => {} }, "kind" => "lobster_house" },
+#   { "geojson" => { "type" => "Feature", "geometry" => { "type" => "Point", "coordinates" => [10.723591, 59.909258] }, "properties" => {} }, "kind" => "lobster_house" },
+#   { "geojson" => { "type" => "Feature", "geometry" => { "type" => "Point", "coordinates" => [10.72365, 59.909072] }, "properties" => {} }, "kind" => "lobster_house" },
+#   { "geojson" => { "type" => "Feature", "geometry" => { "type" => "Point", "coordinates" => [10.752844, 59.904649] }, "properties" => {} }, "kind" => "lobster_house" },
+#   { "geojson" => { "type" => "Feature", "geometry" => { "type" => "Point", "coordinates" => [10.752849, 59.904585] }, "properties" => {} }, "kind" => "lobster_house" },
+#   { "geojson" => { "type" => "Feature", "geometry" => { "type" => "Point", "coordinates" => [10.752758, 59.904547] }, "properties" => {} }, "kind" => "lobster_house" },
+#   { "geojson" => { "type" => "Feature", "geometry" => { "type" => "Point", "coordinates" => [10.75286, 59.904526] }, "properties" => {} }, "kind" => "lobster_house" },
+#   { "geojson" => { "type" => "Feature", "geometry" => { "type" => "Point", "coordinates" => [10.75293, 59.904493] }, "properties" => {} }, "kind" => "lobster_house" },
+#   { "geojson" => { "type" => "Feature", "geometry" => { "type" => "Point", "coordinates" => [10.753096, 59.904482] }, "properties" => {} }, "kind" => "lobster_house" },
+# ].each do |location_data|
+#   location = Location.new(location_data)
+#   location.name = "Lobster house"
+#   location.save!
+# end
