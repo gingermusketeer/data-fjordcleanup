@@ -1,25 +1,21 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <title>DataFjordcleanup</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
-
-  <%= stylesheet_link_tag 'application', media: 'all' %>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-  <link rel="stylesheet" href="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.css" />
-  <style>
-    html,
-    body {
-      height: 100%
-    }
-  </style>
-</head>
-
-<body>
-  <%= yield %>
-</body>
-
+  <head>
+    <title>DataFjordcleanup</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.css" />
+    <style>
+      html,
+      body {
+        height: 100%
+      }
+    </style>
+  </head>
+  <body>
+    <%= yield %>
+  </body>
 </html>
