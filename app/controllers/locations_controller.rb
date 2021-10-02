@@ -1,5 +1,5 @@
 class LocationsController < ApplicationController
-  http_basic_authenticate_with name: "max", password: "classicdriedmango", except: :popup
+  skip_before_action :authenticate_access!, only: [:popup]
 
   def popup
     @location = Location.find(params[:id])
