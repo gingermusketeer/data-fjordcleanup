@@ -1,0 +1,12 @@
+<h1>New Cleanup</h1>
+<%= form_with(model: @cleanup) do |f| %>
+  <%= f.label :occured_at %>
+  <%= f.datetime_field :occured_at %>
+  <%= f.label :weight %>
+  <%= f.number_field :weight %>
+  <%= f.label :hosted_at_id, "Hosted at" %>
+  <%= f.select :hosted_at_id, options_for_select(@event_location_data) %>
+  <%= f.label :location_ids, "Locations" %>
+  <%= f.select :location_ids, options_for_select(@area_location_data), {}, multiple: true %>
+  <%= f.submit %>
+<% end %>

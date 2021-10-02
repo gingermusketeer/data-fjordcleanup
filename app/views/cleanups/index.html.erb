@@ -1,0 +1,20 @@
+<h1>Cleanups</h1>
+<%= link_to 'Register Cleanup', new_cleanup_url %>
+<table>
+  <thead>
+    <td>Date</td>
+    <td>Locations</td>
+    <td>Weight of trash</td>
+    <td></td>
+  </thead>
+  <tbody>
+    <% @cleanups.each do |cleanup| %>
+      <tr>
+        <td><%= cleanup.occurred_at %></td>
+        <td><%= cleanup.locations.map(&:name).join(", ") %></td>
+        <td><%= cleanup.weight %></td>
+        <td><%= link_to edit_cleanup_url(cleanup) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

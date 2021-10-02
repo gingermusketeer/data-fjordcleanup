@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 2021_06_28_213352) do
   create_table "cleanups_locations", force: :cascade do |t|
     t.bigint "cleanup_id", null: false
     t.bigint "location_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["cleanup_id"], name: "index_cleanups_locations_on_cleanup_id"
     t.index ["location_id"], name: "index_cleanups_locations_on_location_id"
   end

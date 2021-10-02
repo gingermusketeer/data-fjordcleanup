@@ -11,6 +11,7 @@ class CreateCleanups < ActiveRecord::Migration[6.1]
     create_table :cleanups_locations do |t|
       t.belongs_to :cleanup, foreign_key: true, null: false
       t.belongs_to :location, foreign_key: true, null: false
+      t.timestamps
     end
   end
 end

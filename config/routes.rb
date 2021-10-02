@@ -5,7 +5,6 @@ Rails.application.routes.draw do
     member do
       get :popup
     end
-
-    resources :cleanups, only: [:create, :new]
   end
+  resources :cleanups, only: [:create, :new, :index]
 end
