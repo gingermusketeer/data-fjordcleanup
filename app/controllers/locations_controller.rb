@@ -3,7 +3,7 @@ class LocationsController < ApplicationController
 
   def popup
     @location = Location.find(params[:id])
-    render layout: false
+    render "#{@location.kind}_popup", layout: false
   end
 
   def index

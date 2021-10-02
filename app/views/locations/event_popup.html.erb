@@ -1,0 +1,6 @@
+<h3><%= @location.name %></h3>
+<p>
+  Last cleanup: <%= time_tag @location.hosted_cleanups.maximum(:occurred_on) %><br/>
+  Number of cleanups: <%= @location.hosted_cleanups.count %><br/>
+  Rubbish collected: <%= @location.hosted_cleanups.sum(:weight) %> kg
+</p>

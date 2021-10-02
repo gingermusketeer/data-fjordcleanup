@@ -435,7 +435,7 @@ bispevika = {
 [
   { name: "Canal", geojson: canal },
   { name: "Tjuvholmen", geojson: tjuvholmen },
-  { name: "Skur13", geojson: skur13 },
+  { name: "Skur 13", geojson: skur13 },
   { name: "Dokka", geojson: dokka },
 # { name: "Goat raft", geojson: goat_raft },
 # { name: "Goat beach", geojson: goat_beach },
