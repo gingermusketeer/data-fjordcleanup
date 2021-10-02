@@ -27,6 +27,6 @@ class CleanupsController < ApplicationController
   end
 
   def cleanup_params
-    params.require(:cleanup).permit(:occurred_at, :weight, :hosted_at_id, :location_ids)
+    params.require(:cleanup).permit(:occurred_at, :weight, :hosted_at_id, location_ids: [])
   end
 end
