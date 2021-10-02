@@ -65,3 +65,5 @@ group :test do
   gem "webdrivers"
   gem "rexml"
 end
+
+gem "tailwindcss-rails", "~> 0.5.0"
