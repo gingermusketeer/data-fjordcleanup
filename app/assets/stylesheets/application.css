@@ -13,3 +13,6 @@
  *= require_tree .
  *= require_self
  */
+
+@import "https://unpkg.com/leaflet@1.7.1/dist/leaflet.css";
+@import "https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.css";

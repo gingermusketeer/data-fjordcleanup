@@ -4,10 +4,7 @@
     <title>Fjord CleanUP Data</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "inter-font", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
     <style>
       html,
       body {
@@ -16,8 +13,6 @@
     </style>
   </head>
   <body>
-    <main class="container mx-auto mt-28 px-5">
-      <%= yield %>
-    </main>
+    <%= yield %>
   </body>
 </html>

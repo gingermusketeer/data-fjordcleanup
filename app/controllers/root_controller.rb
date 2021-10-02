@@ -3,6 +3,11 @@ class RootController < ApplicationController
     @features = load_features
   end
 
+  def map
+    @features = load_features
+    render layout: "map"
+  end
+
   private
 
   def load_features
