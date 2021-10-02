@@ -2,13 +2,13 @@ import L from "https://cdn.skypack.dev/leaflet";
 
 const CENTER = {
   lat: 59.90825104612689,
-  lng: 10.725851858520508,
+  lng: 10.723051858520508,
 };
 
 var map = L.map("map", {
   minZoom: 0,
   maxZoom: 18,
-}).setView([CENTER.lat, CENTER.lng], 17);
+}).setView([CENTER.lat, CENTER.lng], 16);
 window.mapObj = map;
 
 var topolayer = new L.TileLayer.WMS(
