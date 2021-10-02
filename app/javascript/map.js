@@ -1,14 +1,14 @@
 import L from "https://cdn.skypack.dev/leaflet";
 
 const CENTER = {
-  lat: 59.90325104612689,
-  lng: 10.729951858520508,
+  lat: 59.90825104612689,
+  lng: 10.725851858520508,
 };
 
 var map = L.map("map", {
   minZoom: 0,
   maxZoom: 18,
-}).setView([CENTER.lat, CENTER.lng], 15);
+}).setView([CENTER.lat, CENTER.lng], 17);
 window.mapObj = map;
 
 var topolayer = new L.TileLayer.WMS(
