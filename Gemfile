@@ -66,4 +66,4 @@ group :test do
   gem "rexml"
 end
 
-gem "tailwindcss-rails", "~> 0.5.0"
+gem "tailwindcss-rails", "~> 0.5.1"
