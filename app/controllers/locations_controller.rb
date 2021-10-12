@@ -20,7 +20,7 @@ class LocationsController < ApplicationController
     if @location.save
       redirect_to :root
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -31,7 +31,7 @@ class LocationsController < ApplicationController
     if @location.update(location_params)
       redirect_to locations_url
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
