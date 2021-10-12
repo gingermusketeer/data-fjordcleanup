@@ -1,0 +1,21 @@
+<%= form_with(model: @location, class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mx-auto max-w-sm") do |f| %>
+  <h1 class="text-2xl font-bold mb-4">Create Location</h1>
+  <% f.object.errors.full_messages.each do |msg| %>
+    <span class="flex items-center font-medium tracking-wide text-red-500 text-sm">
+      <%= msg %>
+    </span>
+  <% end %>
+  <div class="mb-4 flex flex-col">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="mb-4 flex flex-col">
+    <%= f.label :kind %>
+    <%= f.select :kind, options_for_select(Location.kinds.keys, f.object.kind) %>
+  </div>
+  <div class="mb-4 flex flex-col">
+    <%= f.hidden_field :geojson %>
+  </div>
+  <%= f.submit class: "h-12 px-6 m-2 text-lg text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800" %>
+<% end %>
+<div id="map" data-editable="true" style="width: 50%; height: 50%"></div>
