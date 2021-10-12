@@ -1,5 +1,6 @@
 class LocationsController < ApplicationController
   skip_before_action :authenticate_access!, only: [:popup]
+  before_action :setup_form_data, only: [:edit]
 
   def popup
     @location = Location.find(params[:id])
@@ -12,6 +13,9 @@ class LocationsController < ApplicationController
 
   def new
     @location = Location.new
+  end
+
+  def edit
   end
 
   def create
@@ -29,5 +33,9 @@ class LocationsController < ApplicationController
     result = params.require(:location).permit(:name, :geojson)
     result[:geojson] = JSON.parse(result[:geojson])
     result
+  end
+
+  def setup_form_data
+    @location = Location.find(params[:id])
   end
 end
