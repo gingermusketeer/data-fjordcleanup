@@ -1,9 +1,8 @@
 class ApplicationController < ActionController::Base
-  unless Rails.env.development?
-    before_action :authenticate_access!
-  end
+  before_action :authenticate_access!
 
   def authenticate_access!
+    return if Rails.env.development?
     return if session[:logged_in]
 
     raise ActiveRecord::RecordNotFound
