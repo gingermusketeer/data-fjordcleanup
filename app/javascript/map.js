@@ -19,40 +19,39 @@ new L.TileLayer.WMS("https://opencache.statkart.no/gatekeeper/gk/gk.open", {
   attribution: "Kartverket",
 }).addTo(map);
 
+function onEachFeature(f, l) {
+  let loading = false;
+
+  function onMapClick(e) {
+    if (loading) {
+      return;
+    }
+    loading = true;
+    l.bindPopup("Loading...").openPopup();
+    const { id } = f.properties;
+    fetch(`/locations/${id}/popup`)
+      .then((data) => data.text())
+      .then((html) => {
+        l.bindPopup(html).openPopup();
+      })
+      .catch((e) => {
+        console.error(e);
+      })
+      .then(() => {
+        loading = false;
+      });
+  }
+
+  l.on("click", onMapClick);
+}
+
 const features = JSON.parse(window.map.dataset.features);
 window.features = features;
-const layer = L.geoJSON(features, {
-  onEachFeature: function (f, l) {
-    let loading = false;
+const layers = Object.entries(features).reduce((acc, [key, value]) => {
+  const layer = L.geoJSON(value, { onEachFeature });
+  map.addLayer(layer);
+  acc[key] = layer;
+  return acc;
+}, {});
 
-    function onMapClick(e) {
-      if (loading) {
-        return;
-      }
-      loading = true;
-      l.bindPopup("Loading...").openPopup();
-      const { id } = f.properties;
-      fetch(`/locations/${id}/popup`)
-        .then((data) => data.text())
-        .then((html) => {
-          l.bindPopup(html).openPopup();
-        })
-        .catch((e) => {
-          console.error(e);
-        })
-        .then(() => {
-          loading = false;
-        });
-    }
-
-    l.on("click", onMapClick);
-  },
-});
-
-map.addLayer(layer);
-
-let overlayMaps = {
-  Layers: layer,
-};
-
-L.control.layers(null, overlayMaps).addTo(map);
+L.control.layers(null, layers).addTo(map);

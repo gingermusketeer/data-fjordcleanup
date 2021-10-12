@@ -2,7 +2,6 @@ class RootController < ApplicationController
   skip_before_action :authenticate_access!, only: [:map, :login]
 
   def index
-    @features = load_features
   end
 
   def map
@@ -22,10 +21,14 @@ class RootController < ApplicationController
   private
 
   def load_features
-    features = Location.all.pluck(:geojson)
-    {
-      type: "FeatureGroup",
-      features: features,
-    }
+    Location.group(:kind)
+      .pluck(:kind, "json_agg(geojson)")
+      .to_h
+      .transform_values do |features|
+      {
+        type: "FeatureGroup",
+        features: features,
+      }
+    end
   end
 end

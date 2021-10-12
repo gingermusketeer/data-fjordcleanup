@@ -12,7 +12,9 @@ class Location < ApplicationRecord
   end
 
   enum kind: {
-    area: "area",
+    cleaned: "cleaned",
+    cleaning: "cleaning",
+    planned: "planned",
     event: "event",
     lobster_house: "lobster_house",
   }
