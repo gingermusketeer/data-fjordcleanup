@@ -38,7 +38,7 @@ class LocationsController < ApplicationController
   private
 
   def location_params
-    result = params.require(:location).permit(:name, :geojson)
+    result = params.require(:location).permit(:name, :geojson, :kind)
     result[:geojson] = JSON.parse(result[:geojson])
     result
   end
