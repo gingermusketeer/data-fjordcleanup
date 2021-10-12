@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
   skip_before_action :authenticate_access!, only: [:popup]
-  before_action :setup_form_data, only: [:edit]
+  before_action :setup_form_data, only: [:edit, :update]
 
   def popup
     @location = Location.find(params[:id])
@@ -15,15 +15,23 @@ class LocationsController < ApplicationController
     @location = Location.new
   end
 
-  def edit
-  end
-
   def create
     @location = Location.new(location_params)
     if @location.save
       redirect_to :root
     else
       render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @location.update(location_params)
+      redirect_to locations_url
+    else
+      render :edit
     end
   end
 
