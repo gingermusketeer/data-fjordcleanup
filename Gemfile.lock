@@ -142,7 +142,7 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5.0.beta3)
     rake (13.0.6)
-    redis (4.4.0)
+    redis (4.6.0)
     regexp_parser (2.1.1)
     reline (0.2.7)
       io-console (~> 0.5)
@@ -196,7 +196,7 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.0.alpha2)
-  redis (~> 4.0)
+  redis (~> 4.6)
   rexml
   selenium-webdriver
   stimulus-rails (>= 0.4.0)
